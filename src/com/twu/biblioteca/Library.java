@@ -8,9 +8,15 @@ import java.util.ArrayList;
 public class Library {
     private String welcomeMessage = "Welcome to the Bangalore Public Library!";
     private ArrayList<String> mainMenuOptions = new ArrayList<String>();
+    private BookList bookList;
 
     public Library () {
         addMenuOptions();
+    }
+
+    public Library (BookList bookList) {
+        addMenuOptions();
+        this.bookList = bookList;
     }
 
     private void addMenuOptions () {
@@ -27,5 +33,9 @@ public class Library {
             menuOptions += menuOption + "\n";
         }
         return menuOptions;
+    }
+
+    public String selectMenuOptions (Customer customer) {
+        return bookList.displayBooks();
     }
 }

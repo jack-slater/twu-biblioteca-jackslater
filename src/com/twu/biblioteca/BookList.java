@@ -12,6 +12,10 @@ public class BookList {
         addBooks();
     }
 
+    public BookList (ArrayList<Book> books) {
+        this.books = books;
+    }
+
     private void addBooks () {
         books.add(new Book("Harry Potter", "JK Rowling", 1999));
         books.add(new Book ("Lord of The Rings", "JRR Tolkien", 1960));
