@@ -1,10 +1,6 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import static org.junit.Assert.assertEquals;
 
 public class LibraryTest {
@@ -18,4 +14,5 @@ public class LibraryTest {
     public void displayMainMenuShowsMenuOption_ListBooks () throws Exception {
         assertEquals("List Books\n", new Library().displayMainMenuOptions());
     }
+
 }
