@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-/**
- * Created by jack on 28/03/17.
- */
 public class BookList {
     private ArrayList<Book> books = new ArrayList<Book>();
 

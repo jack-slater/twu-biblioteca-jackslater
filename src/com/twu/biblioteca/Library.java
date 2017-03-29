@@ -9,6 +9,7 @@ public class Library {
 
     public Library () {
         addMenuOptions();
+        bookList = new BookList();
     }
 
     public Library (BookList bookList) {
@@ -32,12 +33,15 @@ public class Library {
         return menuOptions;
     }
 
-    public String selectMenuOptions (Customer customer) {
+    public void selectMenuOptions (Customer customer) {
         String userChoice = customer.userChoice();
-        if (userChoice.equals("list books")) {
-            return bookList.displayBooks();
-        } else {
-            return "Select a valid option!";
+        while (!userChoice.equals("quit")) {
+            if (userChoice.equals("list books")) {
+                System.out.println(bookList.displayBooks());
+            } else {
+                System.out.println("Select a valid option!");
+            }
+            userChoice = customer.userChoice();
         }
     }
 }
