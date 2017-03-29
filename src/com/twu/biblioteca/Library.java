@@ -38,10 +38,13 @@ public class Library {
         while (!userChoice.equals("quit")) {
             if (userChoice.equals("list books")) {
                 System.out.println(bookList.displayBooks());
+                userChoice = customer.userChoice();
+                bookList.selectBookOptions(userChoice);
             } else {
                 System.out.println("Select a valid option!");
             }
             userChoice = customer.userChoice();
         }
     }
+
 }

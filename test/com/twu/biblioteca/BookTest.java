@@ -19,4 +19,19 @@ public class BookTest {
     public void getYearShowBooksYear () {
         assertEquals(1999, hp.getYear());
     }
+
+    @Test
+    public void checkInLibraryShowsinLibraryBoolean () {
+        assertEquals(true, hp.checkInLibrary());
+    }
+
+    @Test
+    public void changeInLibraryStatusChangeCorrectly () {
+        assertEquals(true, hp.checkInLibrary());
+        hp.changeInLibraryStatus();
+        assertEquals(false, hp.checkInLibrary());
+        hp.changeInLibraryStatus();
+        assertEquals(true, hp.checkInLibrary());
+    }
+
 }

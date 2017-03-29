@@ -27,25 +27,25 @@ public class LibraryTest {
 
     @Test
     public void selectMenuOptionsUserSelectsBookList () {
-        inContent("List Books");
+        FormatData.inContent("List Books");
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         l.selectMenuOptions(c);
-        assertEquals(formatBookListExpectedOutput(), outContent.toString());
+        assertEquals(FormatData.bookListExpectedOutput() + "\n", outContent.toString());
     }
 
     @Test
     public void selectMenuOptionsUserSelectsBookListIsNotCaseSensitive () {
-        inContent("LIST BOOKS");
+        FormatData.inContent("LIST BOOKS");
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         l.selectMenuOptions(c);
-        assertEquals(formatBookListExpectedOutput(), outContent.toString());
+        assertEquals(FormatData.bookListExpectedOutput() + "\n", outContent.toString());
     }
 
     @Test
     public void selectMenuOptionsUserSelectsInvalidOption () {
-        inContent("invalid choice");
+        FormatData.inContent("invalid choice");
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         l.selectMenuOptions(c);
@@ -62,16 +62,4 @@ public class LibraryTest {
 //        assertEquals("Thank you for visiting", outContent.toString());
 //    }
 
-    private String formatBookListExpectedOutput () {
-        String expectedOutput = String.format("%-22s%-22s%-22s\n","Title","Author","Year");
-        expectedOutput += String.format("%-22s%-22s%-22d\n", "Harry Potter", "JK Rowling", 1999);
-        expectedOutput += String.format("%-22s%-22s%-22d\n", "Lord of The Rings", "JRR Tolkien", 1960);
-        expectedOutput += String.format("%-22s%-22s%-22d\n", "Trainspotting", "Irvine Welsh", 1993);
-        return expectedOutput + "\n";
-    }
-
-    private void inContent (String input) {
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-    }
 }

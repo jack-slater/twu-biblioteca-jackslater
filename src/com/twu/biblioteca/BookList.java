@@ -22,8 +22,21 @@ public class BookList {
     public String displayBooks () {
         String bookDetails = String.format("%-22s%-22s%-22s\n","Title","Author","Year");
         for (Book book: books) {
-            bookDetails += String.format("%-22s%-22s%-22d\n",book.getTitle(),book.getAuthor(),book.getYear());
+            if (book.checkInLibrary()) {
+                bookDetails += String.format("%-22s%-22s%-22d\n",book.getTitle(),book.getAuthor(),book.getYear());
+            }
         }
         return bookDetails;
+    }
+
+    public String selectBookOptions (String userChoice) {
+        String message = "";
+        for (Book book: books) {
+            if (book.getTitle().equals(userChoice)) {
+                book.changeInLibraryStatus();
+                message = "Thank you! Enjoy the book";
+            }
+        }
+        return message;
     }
 }
