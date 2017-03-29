@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-/**
- * Created by jack on 28/03/17.
- */
 public class Library {
     private String welcomeMessage = "Welcome to the Bangalore Public Library!";
     private ArrayList<String> mainMenuOptions = new ArrayList<String>();
@@ -36,6 +33,11 @@ public class Library {
     }
 
     public String selectMenuOptions (Customer customer) {
-        return bookList.displayBooks();
+        String userChoice = customer.userChoice();
+        if (userChoice.equals("list books")) {
+            return bookList.displayBooks();
+        } else {
+            return "Select a valid option!";
+        }
     }
 }

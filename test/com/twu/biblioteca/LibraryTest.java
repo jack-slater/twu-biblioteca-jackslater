@@ -2,11 +2,16 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
 public class LibraryTest {
+    BookList bl = new BookList();
+    Library l = new Library(bl);
+    Customer c = new Customer();
 
     @Test
     public void welcomeCustomerDisplaysWelcomeMessage () {
@@ -20,17 +25,25 @@ public class LibraryTest {
 
     @Test
     public void selectMenuOptionsUserSelectsBookList () {
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book ("Harry Potter", "JK Rowling", 1999));
-        BookList bl = new BookList(books);
-        Library l = new Library(bl);
-        Customer c = new Customer();
-        assertEquals(formatExpectedOutput(), l.selectMenuOptions(c));
+        String input = "List Books";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertEquals(formatBookListExpectedOutput(), l.selectMenuOptions(c));
     }
 
-    private String formatExpectedOutput () {
+    @Test
+    public void selectMenuOptionsUserSelectsInvalidOption () {
+        String input = "invalid choice";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertEquals("Select a valid option!", l.selectMenuOptions(c));
+    }
+
+    private String formatBookListExpectedOutput () {
         String expectedOutput = String.format("%-22s%-22s%-22s\n","Title","Author","Year");
         expectedOutput += String.format("%-22s%-22s%-22d\n", "Harry Potter", "JK Rowling", 1999);
+        expectedOutput += String.format("%-22s%-22s%-22d\n", "Lord of The Rings", "JRR Tolkien", 1960);
+        expectedOutput += String.format("%-22s%-22s%-22d\n", "Trainspotting", "Irvine Welsh", 1993);
         return expectedOutput;
     }
 
