@@ -38,11 +38,19 @@ public class Library {
         while (!userChoice.equals("quit")) {
             if (userChoice.equals("list books")) {
                 System.out.println(bookList.displayBooks());
-                userChoice = customer.userChoice();
-                bookList.selectBookOptions(userChoice);
+                selectBookOptions(customer);
             } else {
                 System.out.println("Select a valid option!");
             }
+            userChoice = customer.userChoice();
+        }
+    }
+
+    private void selectBookOptions (Customer customer) {
+        String userChoice = customer.userChoice();
+        while (!userChoice.equals("quit")) {
+            System.out.println(bookList.selectBook(userChoice));
+            System.out.println(bookList.displayBooks());
             userChoice = customer.userChoice();
         }
     }

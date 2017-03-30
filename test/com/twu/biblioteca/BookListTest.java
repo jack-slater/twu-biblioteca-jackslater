@@ -16,13 +16,19 @@ public class BookListTest {
     public void checkedOutBooksShouldNotDisplayOnTheList () {
         BookList bl = new BookList();
         assertEquals(FormatData.bookListExpectedOutput(), bl.displayBooks());
-        bl.selectBookOptions("Harry Potter");
+        bl.selectBook ("Harry Potter");
         assertEquals(FormatData.bookListHarryPotterRemovedOutput(), bl.displayBooks());
     }
 
     @Test
     public void customerSeesSuccessfulCheckoutMessageWhenCheckingOutBook () {
-        assertEquals("Thank you! Enjoy the book", new BookList().selectBookOptions("Harry Potter"));
+        assertEquals("Thank you! Enjoy the book", new BookList().selectBook("Harry Potter"));
+    }
+
+    @Test
+    public void  customerSeesUnsuccesfulCheckoutMessageWhenNoTitleMatch () {
+        BookList bl = new BookList();
+        assertEquals("That book is not available.", bl.selectBook("incorrect title"));
     }
 
 }

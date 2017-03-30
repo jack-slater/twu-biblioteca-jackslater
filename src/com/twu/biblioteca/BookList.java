@@ -29,14 +29,13 @@ public class BookList {
         return bookDetails;
     }
 
-    public String selectBookOptions (String userChoice) {
-        String message = "";
+    public String selectBook (String userChoice) {
         for (Book book: books) {
-            if (book.getTitle().equals(userChoice)) {
+            if (book.getTitle().toLowerCase().equals(userChoice)) {
                 book.changeInLibraryStatus();
-                message = "Thank you! Enjoy the book";
+                return "Thank you! Enjoy the book";
             }
         }
-        return message;
+        return "That book is not available.";
     }
 }
