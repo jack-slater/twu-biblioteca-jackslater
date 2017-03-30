@@ -6,7 +6,6 @@ public class BibliotecaApp {
         Library l = new Library();
         Customer c = new Customer();
         System.out.println(l.welcomeCustomer());
-        System.out.println(l.displayMainMenuOptions());
         l.selectMenuOptions(c);
     }
 }

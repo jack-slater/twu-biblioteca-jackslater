@@ -20,10 +20,10 @@ public class LibraryTest {
         assertEquals(new Library().welcomeCustomer(), "Welcome to the Bangalore Public Library!");
     }
 
-    @Test
-    public void displayMainMenuShowsMenuOption_ListBooks () throws Exception {
-        assertEquals("List Books\n", new Library().displayMainMenuOptions());
-    }
+//    @Test
+//    public void displayMainMenuShowsMenuOption_ListBooks () throws Exception {
+//        assertEquals("List Books\n", new Library().displayMainMenuOptions());
+//    }
 
     @Test
     public void selectMenuOptionsUserSelectsBookList () {
