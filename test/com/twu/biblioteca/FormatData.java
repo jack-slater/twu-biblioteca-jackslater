@@ -23,6 +23,7 @@ public class FormatData {
         return expectedOutput;
     }
 
+
     public static void inContent (String input) {
           InputStream in = new ByteArrayInputStream(input.getBytes());
           System.setIn(in);
