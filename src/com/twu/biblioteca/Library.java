@@ -6,6 +6,7 @@ public class Library {
     private String welcomeMessage = "Welcome to the Bangalore Public Library!";
     private ArrayList<String> mainMenuOptions = new ArrayList<String>();
     private BookList bookList;
+    private Boolean checkOutMode = true;
 
     public Library () {
         addMenuOptions();
@@ -37,6 +38,7 @@ public class Library {
         String userChoice = customer.userChoice();
         while (!userChoice.equals("quit")) {
             if (userChoice.equals("list books")) {
+                selectReturnOrCheckOut(customer);
                 System.out.println(bookList.displayBooks());
                 selectBookOptions(customer);
             } else {
@@ -49,9 +51,19 @@ public class Library {
     private void selectBookOptions (Customer customer) {
         String userChoice = customer.userChoice();
         while (!userChoice.equals("quit")) {
-            System.out.println(bookList.selectBook(userChoice));
+            System.out.println(bookList.processBook(userChoice, checkOutMode));
             System.out.println(bookList.displayBooks());
             userChoice = customer.userChoice();
+        }
+    }
+
+    private void selectReturnOrCheckOut (Customer customer) {
+        System.out.println("Select return or checkout");
+        String userChoice = customer.userChoice();
+        if (userChoice.equals("return")) {
+            this.checkOutMode = false;
+        } else {
+            this.checkOutMode = true;
         }
     }
 

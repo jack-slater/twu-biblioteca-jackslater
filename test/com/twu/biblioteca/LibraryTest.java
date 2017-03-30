@@ -50,6 +50,10 @@ public class LibraryTest {
         System.setOut(new PrintStream(outContent));
         l.selectMenuOptions(c);
         assertEquals("Select a valid option!\n", outContent.toString());
+    }
+
+    @Test
+    public void userCanChooseToReturnOrCheckOutABook () {
 
     }
 

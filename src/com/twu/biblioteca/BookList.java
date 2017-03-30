@@ -29,13 +29,16 @@ public class BookList {
         return bookDetails;
     }
 
-    public String selectBook (String userChoice) {
+    public String processBook(String userChoice, Boolean checkOutMode) {
         for (Book book: books) {
-            if (book.getTitle().toLowerCase().equals(userChoice)) {
+            if (book.getTitle().toLowerCase().equals(userChoice.toLowerCase())) {
+                if (!checkOutMode.equals(book.checkInLibrary())) break;
                 book.changeInLibraryStatus();
-                return "Thank you! Enjoy the book";
+                return checkOutMode ? "Thank you! Enjoy the book" :
+                        "Thank you for returning the book.";
             }
         }
-        return "That book is not available.";
+        return checkOutMode ? "That book is not available." :
+              "That is not a valid book to return.";
     }
 }
