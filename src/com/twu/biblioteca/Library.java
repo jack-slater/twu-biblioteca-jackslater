@@ -6,16 +6,20 @@ public class Library {
     private String welcomeMessage = "Welcome to the Bangalore Public Library!";
     private MainMenu mainMenu;
     private BookList bookList;
+    private MovieList movieList;
     private Boolean checkOutMode = true;
 
     public Library () {
         this.mainMenu = new MainMenu();
         this.bookList = new BookList();
+        this.movieList = new MovieList();
+
     }
 
-    public Library (BookList bookList) {
+    public Library (ArrayList<LibraryItem> bookList, ArrayList<LibraryItem> movieList) {
         this.mainMenu = new MainMenu();
-        this.bookList = bookList;
+        this.bookList = new BookList(bookList);
+        this.movieList = new MovieList(movieList);
     }
 
     public String welcomeCustomer () {
@@ -26,17 +30,16 @@ public class Library {
         System.out.println(mainMenu.displayMainMenu());
         String userChoice = customer.userChoice();
         while (!userChoice.equals("quit")) {
-            if (userChoice.equals("list books")) {
-                selectBookOptions(customer);
-            } else {
-                System.out.println(mainMenu.processInvalidChoice(userChoice));
-            }
+            if (userChoice.equals("list books")) selectItemOptions(customer, this.bookList);
+            if (userChoice.equals("list movies")) selectItemOptions(customer, this.movieList);
+            else System.out.println(mainMenu.processInvalidChoice(userChoice));
+
             System.out.println(mainMenu.displayMainMenu());
             userChoice = customer.userChoice();
         }
     }
 
-    private void selectBookOptions (Customer customer) {
+    private void selectItemOptions(Customer customer, LibraryItemList itemList) {
         System.out.println("Select return or checkout");
         String userChoice = customer.userChoice();
         selectReturnOrCheckOut(userChoice);
@@ -45,9 +48,9 @@ public class Library {
             if (userChoice.equals("return") || userChoice.equals("checkout")) {
                 selectReturnOrCheckOut(userChoice);
             } else {
-                System.out.println(bookList.processBook(userChoice, checkOutMode));
+                System.out.println(itemList.processLibraryItem(userChoice, checkOutMode));
             }
-            System.out.println(bookList.displayBooks());
+            System.out.println(itemList.displayLibraryItems());
             System.out.println(checkOutMode ? "Checkout Mode" : "Return Mode");
             userChoice = customer.userChoice();
         }

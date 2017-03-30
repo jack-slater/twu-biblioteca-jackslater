@@ -7,6 +7,7 @@ public class MainMenu {
 
     public MainMenu () {
         mainMenuOptions.add("List Books");
+        mainMenuOptions.add("List Movies");
     }
 
     public String displayMainMenu () {

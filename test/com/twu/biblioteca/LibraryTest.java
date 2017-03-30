@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class LibraryTest {
-    BookList bl = new BookList();
-    Library l = new Library(bl);
-    Customer c = new Customer();
 
     @Test
     public void welcomeCustomerDisplaysWelcomeMessage () {

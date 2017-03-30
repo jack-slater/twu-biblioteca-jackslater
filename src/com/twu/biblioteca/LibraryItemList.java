@@ -1,5 +1,48 @@
 package com.twu.biblioteca;
 
 
-public class LibraryItemList {
+import java.util.ArrayList;
+
+public abstract class LibraryItemList {
+    private ArrayList<LibraryItem> itemsList;
+
+    public LibraryItemList () {
+        this.itemsList = new ArrayList<LibraryItem>();
+    }
+
+    public LibraryItemList (ArrayList<LibraryItem> itemsList) {
+        this.itemsList = itemsList;
+    }
+
+    public String displayLibraryItems() {
+        String itemDetails = formatHeader();
+        for (LibraryItem item: itemsList) {
+            if (item.checkInLibrary()) {
+                itemDetails += formatItemDetails(item);
+            }
+        }
+        return itemDetails;
+    }
+
+    public void addItems (LibraryItem item) {
+        this.itemsList.add(item);
+    };
+
+    public abstract String formatHeader ();
+
+    public abstract String formatItemDetails (LibraryItem item);
+
+    public String processLibraryItem(String userChoice, Boolean checkOutMode) {
+        for (LibraryItem item: itemsList) {
+            if (item.getTitle().toLowerCase().equals(userChoice.toLowerCase())) {
+                if (!checkOutMode.equals(item.checkInLibrary())) break;
+                item.changeInLibraryStatus();
+                return showSuccesfulMessages(checkOutMode);
+            }
+        }
+        return showUnsuccesfulMessages(checkOutMode);
+    }
+
+    public abstract String showSuccesfulMessages (Boolean checkOutMode);
+    public abstract String showUnsuccesfulMessages (Boolean checkOutMode);
 }

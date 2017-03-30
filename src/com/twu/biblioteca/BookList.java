@@ -2,43 +2,36 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class BookList {
-    private ArrayList<Book> books = new ArrayList<Book>();
+public class BookList extends LibraryItemList {
 
     public BookList () {
-        addBooks();
+        super();
     }
 
-    public BookList (ArrayList<Book> books) {
-        this.books = books;
+    public BookList (ArrayList<LibraryItem> itemsList) {
+        super(itemsList);
     }
 
-    private void addBooks () {
-        books.add(new Book("Harry Potter", "JK Rowling", 1999));
-        books.add(new Book ("Lord of The Rings", "JRR Tolkien", 1960));
-        books.add(new Book ("Trainspotting", "Irvine Welsh", 1993));
+    @Override
+    public String formatHeader() {
+        return String.format("%-22s%-22s%-22s\n","Title","Author","Year");
     }
 
-    public String displayBooks () {
-        String bookDetails = String.format("%-22s%-22s%-22s\n","Title","Author","Year");
-        for (Book book: books) {
-            if (book.checkInLibrary()) {
-                bookDetails += String.format("%-22s%-22s%-22d\n",book.getTitle(),book.getAuthor(),book.getYear());
-            }
-        }
-        return bookDetails;
+    @Override
+    public String formatItemDetails(LibraryItem item) {
+        Book book = (Book) item;
+        return String.format("%-22s%-22s%-22d\n",book.getTitle(),book.getAuthor(),book.getYear());
     }
 
-    public String processBook(String userChoice, Boolean checkOutMode) {
-        for (Book book: books) {
-            if (book.getTitle().toLowerCase().equals(userChoice.toLowerCase())) {
-                if (!checkOutMode.equals(book.checkInLibrary())) break;
-                book.changeInLibraryStatus();
-                return checkOutMode ? "Thank you! Enjoy the book" :
-                        "Thank you for returning the book.";
-            }
-        }
+    @Override
+    public String showSuccesfulMessages(Boolean checkOutMode) {
+        return checkOutMode ? "Thank you! Enjoy the book." :
+                "Thank you for returning the book.";
+    }
+
+    @Override
+    public String showUnsuccesfulMessages(Boolean checkOutMode) {
         return checkOutMode ? "That book is not available." :
-              "That is not a valid book to return.";
+                "That is not a valid book to return.";
     }
 }
