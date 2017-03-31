@@ -49,7 +49,7 @@ public class Library {
         return userInfo == null ? false: userInfo.getCustomerLoggedIn();
     }
 
-    public String sendUserProfileToCustomer (String libraryNumber) {
+    public String getUserProfile(String libraryNumber) {
         UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
         if (userInfo == null) return "User Profile Not Found";
         return userInfo.getCustomerLoggedIn() ? userInfo.buildUserProfileCard() : "User not logged in";
@@ -58,7 +58,6 @@ public class Library {
     public void userLogin (String libraryNumber, String password) {
         UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
         if (userInfo != null) userInfo.changeCustomerLogin(password);
-
     }
 
     private void selectItemOptions(Customer customer, LibraryItemList itemList) {

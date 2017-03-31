@@ -35,21 +35,21 @@ public class LibraryTest {
         ui.changeCustomerLogin("password");
         AllUsers au = new AllUsers(ui);
         Library l = new Library(au);
-        assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292370", l.sendUserProfileToCustomer("111-1111"));
+        assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292370", l.getUserProfile("111-1111"));
     }
 
     @Test
     public void sendUserProfileToCustomerSendsFailMessageWhenNotLoggedIn () {
         AllUsers au = FormatData.addUsersToAllUsers();
         Library l = new Library(au);
-        assertEquals("User not logged in", l.sendUserProfileToCustomer("111-1111"));
+        assertEquals("User not logged in", l.getUserProfile("111-1111"));
     }
 
     @Test
     public void sendUserProfileToCustomerSendsUserNotFoundIfUserNotInAllUsers () {
         AllUsers au = FormatData.addUsersToAllUsers();
         Library l = new Library(au);
-        assertEquals("User Profile Not Found", l.sendUserProfileToCustomer("222-2222"));
+        assertEquals("User Profile Not Found", l.getUserProfile("222-2222"));
     }
 
     @Test
