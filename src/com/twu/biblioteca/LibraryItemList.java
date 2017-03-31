@@ -32,11 +32,11 @@ public abstract class LibraryItemList {
 
     public abstract String formatItemDetails (LibraryItem item);
 
-    public String processLibraryItem(String userChoice, Boolean checkOutMode) {
+    public String processLibraryItem(String userChoice, Boolean checkOutMode, String libraryNumber, CheckedOutItems checkedOutItems) {
         for (LibraryItem item: itemsList) {
             if (item.getTitle().toLowerCase().equals(userChoice.toLowerCase())) {
                 if (!checkOutMode.equals(item.checkInLibrary())) break;
-                item.changeInLibraryStatus();
+                item.changeInLibraryStatus(libraryNumber, checkedOutItems);
                 return showSuccesfulMessages(checkOutMode);
             }
         }

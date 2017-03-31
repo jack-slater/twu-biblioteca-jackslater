@@ -9,21 +9,24 @@ public class Library {
     private MovieList movieList;
     private Boolean checkOutMode = true;
     private AllUsers allUsers;
+    private CheckedOutItems checkedOutItems;
 
     public Library () {
         this.mainMenu = new MainMenu();
         this.bookList = new BookList();
         this.movieList = new MovieList();
         this.allUsers = new AllUsers();
+        this.checkedOutItems = new CheckedOutItems();
     }
 
     public Library (ArrayList<LibraryItem> bookList, ArrayList<LibraryItem> movieList) {
-        this.mainMenu = new MainMenu();
+        super();
         this.bookList = new BookList(bookList);
         this.movieList = new MovieList(movieList);
     }
 
     public Library (AllUsers allUsers) {
+        super();
         this.allUsers = allUsers;
     }
 
@@ -69,7 +72,8 @@ public class Library {
             if (userChoice.equals("return") || userChoice.equals("checkout")) {
                 selectReturnOrCheckOut(userChoice);
             } else {
-                System.out.println(itemList.processLibraryItem(userChoice, checkOutMode));
+                System.out.println(itemList.processLibraryItem(userChoice, checkOutMode,
+                        customer.getLibraryNumber(), this.checkedOutItems));
             }
             System.out.println(itemList.displayLibraryItems());
             System.out.println(checkOutMode ? "Checkout Mode" : "Return Mode");

@@ -22,10 +22,30 @@ public class LibraryItemTest {
 
     @Test
     public void changeInLibraryStatusChangeCorrectly () {
+        CheckedOutItems coi = new CheckedOutItems();
+        String ln = "111-1111";
         assertEquals(true, hp.checkInLibrary());
-        hp.changeInLibraryStatus();
+        hp.changeInLibraryStatus(ln, coi);
         assertEquals(false, hp.checkInLibrary());
-        hp.changeInLibraryStatus();
+        hp.changeInLibraryStatus(ln, coi);
         assertEquals(true, hp.checkInLibrary());
+    }
+
+    @Test
+    public void changeInLibraryStatuAddsItemAndUserNumberToCheckOutList () {
+        CheckedOutItems coi = new CheckedOutItems();
+        assertEquals("Item not found", coi.findItemByName("Library Item"));
+        hp.changeInLibraryStatus("111-1111", coi);
+        assertEquals("111-1111", coi.findItemByName("Library Item"));
+    }
+
+    @Test
+    public void changeInLibraryStatuRemovesItemWhenAlreadyThere () {
+        CheckedOutItems coi = new CheckedOutItems();
+        assertEquals("Item not found", coi.findItemByName("Library Item"));
+        hp.changeInLibraryStatus("111-1111", coi);
+        assertEquals("111-1111", coi.findItemByName("Library Item"));
+        hp.changeInLibraryStatus("111-1111", coi);
+        assertEquals("Item not found", coi.findItemByName("Library Item"));
     }
 }

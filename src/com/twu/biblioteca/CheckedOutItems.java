@@ -20,6 +20,17 @@ public class CheckedOutItems {
         for (LibraryItem item: items) {
             if (itemName.equals(item.getTitle())) return checkedoutItems.get(item);
         }
-        return "Item not founds";
+        return "Item not found";
+    }
+
+    public void addItem (String libraryNumber, LibraryItem libraryItem) {
+        checkedoutItems.put(libraryItem, libraryNumber);
+    }
+
+    public void removeItem (String itemName) {
+        Set<LibraryItem> items = checkedoutItems.keySet();
+        for (LibraryItem item: items) {
+            if (itemName.equals(item.getTitle())) checkedoutItems.remove(item);
+        }
     }
 }

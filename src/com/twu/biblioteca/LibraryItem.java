@@ -23,7 +23,9 @@ public class LibraryItem {
         return this.inLibrary;
     }
 
-    public void changeInLibraryStatus () {
+    public void changeInLibraryStatus (String libraryNumber, CheckedOutItems checkedOutItems) {
+        if (this.inLibrary) checkedOutItems.addItem(libraryNumber, this);
+        else checkedOutItems.removeItem(this.title);
         this.inLibrary = !this.inLibrary;
     }
 }
