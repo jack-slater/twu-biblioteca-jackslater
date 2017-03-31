@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import sun.plugin.util.UserProfile;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -52,5 +54,9 @@ public class FormatData {
     public static void inContent (String input) {
           InputStream in = new ByteArrayInputStream(input.getBytes());
           System.setIn(in);
+     }
+
+     public static UserInfo buildUserInfo () {
+         return new UserInfo("Jack Slater", "js@email.com", "Chorlton, Manchester", "07967292370", "111-1111", "password");
      }
 }

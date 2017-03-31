@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
+import sun.plugin.util.UserProfile;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -16,5 +17,18 @@ public class CustomerTest {
         System.setIn(in);
         assertEquals("add 5", customer.userChoice());
     }
+
+    @Test
+    public void getLibraryNumberShowsCustomersLibraryNumber () {
+        Customer c = new Customer();
+        assertEquals("111-1111", c.getLibraryNumber());
+    }
+
+//    @Test
+//    public void seeUserInformationReturnsLibraryUserProfile () {
+//        UserInfo up = FormatData.buildUserInfo();
+//        Customer c = new Customer(up);
+//        assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292730", c.getUserInfo());
+//    }
 
 }
