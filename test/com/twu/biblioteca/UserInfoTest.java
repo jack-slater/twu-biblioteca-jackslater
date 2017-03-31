@@ -25,7 +25,7 @@ public class UserInfoTest {
     public void customerLoginChangesCustomerLoggedInToTrueIfPasswordMatches () {
         UserInfo ui = FormatData.buildUserInfo();
         assertEquals(false, ui.getCustomerLoggedIn());
-        ui.customerLogin("password");
+        ui.changeCustomerLogin("password");
         assertEquals(true, ui.getCustomerLoggedIn());
     }
 
@@ -33,7 +33,7 @@ public class UserInfoTest {
     public void customerLoginDoesntChangeCustomerLoggedIfPasswordMatchesIsWrong () {
         UserInfo ui = FormatData.buildUserInfo();
         assertEquals(false, ui.getCustomerLoggedIn());
-        ui.customerLogin("wrongPassword");
+        ui.changeCustomerLogin("wrongPassword");
         assertEquals(false, ui.getCustomerLoggedIn());
     }
 
@@ -42,5 +42,6 @@ public class UserInfoTest {
         UserInfo ui = FormatData.buildUserInfo();
         assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292370", ui.buildUserProfileCard());
     }
+
 
 }

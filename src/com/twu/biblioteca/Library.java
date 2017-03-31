@@ -44,10 +44,21 @@ public class Library {
         }
     }
 
-    public Boolean checkUserLogin (Customer customer) {
-        String libraryNumber = customer.getLibraryNumber();
+    public Boolean checkUserLogin (String libraryNumber) {
         UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
         return userInfo == null ? false: userInfo.getCustomerLoggedIn();
+    }
+
+    public String sendUserProfileToCustomer (String libraryNumber) {
+        UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
+        if (userInfo == null) return "User Profile Not Found";
+        return userInfo.getCustomerLoggedIn() ? userInfo.buildUserProfileCard() : "User not logged in";
+    }
+
+    public void userLogin (String libraryNumber, String password) {
+        UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
+        if (userInfo != null) userInfo.changeCustomerLogin(password);
+
     }
 
     private void selectItemOptions(Customer customer, LibraryItemList itemList) {

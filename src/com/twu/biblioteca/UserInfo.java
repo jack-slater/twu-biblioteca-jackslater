@@ -30,13 +30,17 @@ public class UserInfo {
         return customerLoggedIn;
     }
 
-    public void customerLogin (String password) {
-        if (password.equals(this.password)) {
+    public void changeCustomerLogin(String password) {
+        if (checkPassword(password)) {
             this.customerLoggedIn = true;
         }
     }
 
     public String buildUserProfileCard () {
         return this.name + "\n" + this.email + "\n" + this.address + "\n" + this.phoneNumber ;
+    }
+
+    private Boolean checkPassword (String password) {
+        return password.equals(this.password);
     }
 }
