@@ -59,4 +59,9 @@ public class FormatData {
      public static UserInfo buildUserInfo () {
          return new UserInfo("Jack Slater", "js@email.com", "Chorlton, Manchester", "07967292370", "111-1111", "password");
      }
+
+     public static AllUsers addUsersToAllUsers () {
+        UserInfo ui = buildUserInfo();
+        return new AllUsers(ui);
+     }
 }

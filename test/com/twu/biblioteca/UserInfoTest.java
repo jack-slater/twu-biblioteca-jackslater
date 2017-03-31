@@ -37,4 +37,10 @@ public class UserInfoTest {
         assertEquals(false, ui.getCustomerLoggedIn());
     }
 
+    @Test
+    public void buildUserProfileCardCreatesUserInfoForCustomer () {
+        UserInfo ui = FormatData.buildUserInfo();
+        assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292370", ui.buildUserProfileCard());
+    }
+
 }

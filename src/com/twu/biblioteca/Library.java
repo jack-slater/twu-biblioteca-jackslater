@@ -8,18 +8,23 @@ public class Library {
     private BookList bookList;
     private MovieList movieList;
     private Boolean checkOutMode = true;
+    private AllUsers allUsers;
 
     public Library () {
         this.mainMenu = new MainMenu();
         this.bookList = new BookList();
         this.movieList = new MovieList();
-
+        this.allUsers = new AllUsers();
     }
 
     public Library (ArrayList<LibraryItem> bookList, ArrayList<LibraryItem> movieList) {
         this.mainMenu = new MainMenu();
         this.bookList = new BookList(bookList);
         this.movieList = new MovieList(movieList);
+    }
+
+    public Library (AllUsers allUsers) {
+        this.allUsers = allUsers;
     }
 
     public String welcomeCustomer () {
@@ -37,6 +42,12 @@ public class Library {
             System.out.println(mainMenu.displayMainMenu());
             userChoice = customer.userChoice();
         }
+    }
+
+    public Boolean checkUserLogin (Customer customer) {
+        String libraryNumber = customer.getLibraryNumber();
+        UserInfo userInfo = allUsers.findUserByLibraryNumber(libraryNumber);
+        return userInfo == null ? false: userInfo.getCustomerLoggedIn();
     }
 
     private void selectItemOptions(Customer customer, LibraryItemList itemList) {

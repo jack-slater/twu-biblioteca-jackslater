@@ -26,7 +26,7 @@ public class UserInfo {
         return this.libraryNumber;
     }
 
-    public Boolean getCustomerLoggedIn () {
+    public Boolean getCustomerLoggedIn() {
         return customerLoggedIn;
     }
 
@@ -34,5 +34,9 @@ public class UserInfo {
         if (password.equals(this.password)) {
             this.customerLoggedIn = true;
         }
+    }
+
+    public String buildUserProfileCard () {
+        return this.name + "\n" + this.email + "\n" + this.address + "\n" + this.phoneNumber ;
     }
 }
