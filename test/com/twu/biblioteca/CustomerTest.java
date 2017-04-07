@@ -25,6 +25,12 @@ public class CustomerTest {
     }
 
 //    @Test
+//    public void getCustomerLoginInStatus () {
+//        Customer c = new Customer();
+//        assertEquals("false", c.getCustomerLoginStatus());
+//    }
+
+//    @Test
 //    public void seeUserInformationReturnsLibraryUserProfile () {
 //        UserInfo up = FormatData.buildUserInfo();
 //        Customer c = new Customer(up);

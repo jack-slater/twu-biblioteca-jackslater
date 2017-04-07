@@ -8,11 +8,13 @@ public class MainMenu {
     public MainMenu () {
         mainMenuOptions.add("List Books");
         mainMenuOptions.add("List Movies");
+        mainMenuOptions.add("User");
     }
 
-    public String displayMainMenu () {
+    public String displayMainMenu (Boolean userLoggedIn) {
         String menuOptions = "Main Menu\n";
         for (String menuOption: mainMenuOptions) {
+            if (menuOption.equals("User")) menuOption = userLoggedIn ? "User Details" : "Login";
             menuOptions += menuOption + "   ";
         }
         return menuOptions + "\n\nSelect menu option or quit to exit";

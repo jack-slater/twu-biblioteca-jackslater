@@ -10,7 +10,7 @@ public class UserInfo {
     private String phoneNumber;
     private String libraryNumber;
     private String password;
-    private Boolean customerLoggedIn = false;
+    private Boolean loggedIn = false;
 
 
     public UserInfo(String name, String email, String address, String phoneNumber, String libraryNumber, String password) {
@@ -26,13 +26,13 @@ public class UserInfo {
         return this.libraryNumber;
     }
 
-    public Boolean getCustomerLoggedIn() {
-        return customerLoggedIn;
+    public Boolean getLoggedIn() {
+        return loggedIn;
     }
 
-    public void changeCustomerLogin(String password) {
+    public void loginInUser(String password) {
         if (checkPassword(password)) {
-            this.customerLoggedIn = true;
+            this.loggedIn = true;
         }
     }
 

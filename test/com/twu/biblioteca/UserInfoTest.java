@@ -18,23 +18,23 @@ public class UserInfoTest {
     @Test
     public void getCustomerLoggedInReturnsFalesBeforeLogin () {
         UserInfo ui = FormatData.buildUserInfo();
-        assertEquals(false, ui.getCustomerLoggedIn());
+        assertEquals(false, ui.getLoggedIn());
     }
 
     @Test
     public void customerLoginChangesCustomerLoggedInToTrueIfPasswordMatches () {
         UserInfo ui = FormatData.buildUserInfo();
-        assertEquals(false, ui.getCustomerLoggedIn());
-        ui.changeCustomerLogin("password");
-        assertEquals(true, ui.getCustomerLoggedIn());
+        assertEquals(false, ui.getLoggedIn());
+        ui.loginInUser("password");
+        assertEquals(true, ui.getLoggedIn());
     }
 
     @Test
     public void customerLoginDoesntChangeCustomerLoggedIfPasswordMatchesIsWrong () {
         UserInfo ui = FormatData.buildUserInfo();
-        assertEquals(false, ui.getCustomerLoggedIn());
-        ui.changeCustomerLogin("wrongPassword");
-        assertEquals(false, ui.getCustomerLoggedIn());
+        assertEquals(false, ui.getLoggedIn());
+        ui.loginInUser("wrongPassword");
+        assertEquals(false, ui.getLoggedIn());
     }
 
     @Test

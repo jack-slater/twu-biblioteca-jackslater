@@ -22,7 +22,7 @@ public class LibraryTest {
     @Test
     public void checkUserLoginReturnsTrueWhenLoggedIn () {
         UserInfo ui = FormatData.buildUserInfo();
-        ui.changeCustomerLogin("password");
+        ui.loginInUser("password");
         Customer c = new Customer(ui);
         AllUsers au = new AllUsers(ui);
         Library l = new Library(au);
@@ -32,7 +32,7 @@ public class LibraryTest {
     @Test
     public void sendUserProfileToCustomerSendsProfileWhenLoggedIn () {
         UserInfo ui = FormatData.buildUserInfo();
-        ui.changeCustomerLogin("password");
+        ui.loginInUser("password");
         AllUsers au = new AllUsers(ui);
         Library l = new Library(au);
         assertEquals("Jack Slater\njs@email.com\nChorlton, Manchester\n07967292370", l.getUserProfile("111-1111"));
@@ -50,16 +50,6 @@ public class LibraryTest {
         AllUsers au = FormatData.addUsersToAllUsers();
         Library l = new Library(au);
         assertEquals("User Profile Not Found", l.getUserProfile("222-2222"));
-    }
-
-    @Test
-    public void userLoginChangesUserInfoLoggedInToTrue () {
-        UserInfo ui = FormatData.buildUserInfo();
-        AllUsers au = new AllUsers(ui);
-        Library l = new Library(au);
-        assertEquals(false, ui.getCustomerLoggedIn());
-        l.userLogin("111-1111", "password");
-        assertEquals(true, ui.getCustomerLoggedIn());
     }
 
 }
