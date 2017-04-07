@@ -51,16 +51,30 @@ public class Library {
     }
 
     private void processMenuChoice(Customer customer, String userChoice) {
-        if (userChoice.equals("list books")) selectItemOptions(customer, this.bookList);
-        if (userChoice.equals("list movies")) selectItemOptions(customer, this.movieList);
-        if (userChoice.equals("login") || userChoice.equals("user details")) {
-            processLoginOrUserDetailsChoice(userChoice, customer.getLibraryNumber());
+        String libraryNumber = customer.getLibraryNumber();
+        Boolean userLoggedIn = checkUserLogin(libraryNumber);
+        if (userChoice.equals("list books") || userChoice.equals("list movies")) {
+            processLibraryListOption(customer, userChoice, userLoggedIn);
+        }
+        else if (userChoice.equals("login") || userChoice.equals("user details")) {
+            processLoginOrUserDetailsChoice(userChoice, libraryNumber, userLoggedIn);
         }
         else System.out.println(mainMenu.processInvalidChoice(userChoice));
+
     }
 
-    private void processLoginOrUserDetailsChoice (String userChoice, String libraryNumber) {
-        Boolean userLoggedIn = checkUserLogin(libraryNumber);
+    private void processLibraryListOption(Customer customer, String userChoice, Boolean userLoggedIn) {
+        if (userLoggedIn) {
+            if (userChoice.equals("list books")) selectItemOptions(customer, this.bookList);
+            if (userChoice.equals("list movies")) selectItemOptions(customer, this.movieList);
+        } else {
+            if (userChoice.equals("list books")) viewItemOptions(this.bookList);
+            if (userChoice.equals("list movies")) viewItemOptions(this.movieList);
+        }
+    }
+
+
+    private void processLoginOrUserDetailsChoice (String userChoice, String libraryNumber, Boolean userLoggedIn) {
         if (userChoice.equals("login") && !userLoggedIn) userLogin();
         if (userChoice.equals("user details") && userLoggedIn)
             System.out.println(getUserProfile(libraryNumber));
@@ -102,6 +116,13 @@ public class Library {
             System.out.println(checkOutMode ? "Checkout Mode" : "Return Mode");
             userChoice = customer.userChoice();
         }
+    }
+
+    private void viewItemOptions(LibraryItemList itemList) {
+        System.out.println(itemList.displayLibraryItems());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type any key to return");
+        scanner.next();
     }
 
     private void processItemChoice(Customer customer, LibraryItemList itemList, String userChoice) {
